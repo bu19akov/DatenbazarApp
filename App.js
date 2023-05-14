@@ -13,10 +13,10 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Auth">
-          <Stack.Screen name="Auth" component={Auth} options={{ title: 'Login' }} />
-          <Stack.Screen name="UserRegister" component={UserRegister} options={{ title: 'User Registration' }} />
-          <Stack.Screen name="CompanyRegister" component={CompanyRegister} options={{ title: 'Company Registration' }} />
+        <Stack.Navigator initialRouteName="Auth" screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Auth" component={Auth} />
+          <Stack.Screen name="UserRegister" component={UserRegister} />
+          <Stack.Screen name="CompanyRegister" component={CompanyRegister} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
