@@ -8,7 +8,7 @@ import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 
 
-const Auth = () => {
+const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
@@ -59,7 +59,7 @@ const Auth = () => {
       <Text style={styles.title}>Data Bazar</Text>
       <Text style={styles.header}>Earning money with your data - so simple as never before</Text>
 
-      <Text style={styles.inputLabel}>Email:</Text>
+      <Text style={styles.inputLabel}>Username:</Text>
       <TextInput
         style={styles.input}
         value={email}
@@ -83,7 +83,7 @@ const Auth = () => {
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
       <Text style={styles.divider}>or</Text>
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RegScreen")}>
         <View style={styles.buttonContent}>
           <EmailIcon name="envelope" size={20} color="black" />
           <Text style={styles.buttonText}>Sign up with Email</Text>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: '#E0E0E0',
     alignItems: 'center',
   },
   menuIcon: {
@@ -192,4 +192,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Auth;
+export default AuthScreen;

@@ -2,9 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Auth from './components/Auth';
-import UserRegister from './components/UserRegister'; 
-import CompanyRegister from './components/CompanyRegister';
+import AuthScreen from './components/AuthScreen';
+import RegScreen from './components/RegistrationScreen'; 
 
 const Stack = createStackNavigator();
 
@@ -13,10 +12,9 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Auth" screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Auth" component={Auth} />
-          <Stack.Screen name="UserRegister" component={UserRegister} />
-          <Stack.Screen name="CompanyRegister" component={CompanyRegister} />
+        <Stack.Navigator initialRouteName="AuthScreen" screenOptions={{headerShown: false}}>
+          <Stack.Screen name="AuthScreen" component={AuthScreen} />
+          <Stack.Screen name="RegScreen" component={RegScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
