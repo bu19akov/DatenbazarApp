@@ -8,7 +8,7 @@ import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 
 
-const Auth = () => {
+const Auth = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
@@ -22,10 +22,20 @@ const Auth = () => {
           <CloseIcon name="close" size={30} color="black" />
         </TouchableOpacity>
       </View>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>About</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>Product</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>Privacy</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>Contact us</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        onPress={() => navigation.navigate('About')}><Text 
+        style={styles.menuButtonText}>About us</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        ><Text
+         style={styles.menuButtonText}
+         onPress={()=> navigation.navigate('Product')}>Product</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        onPress={() => navigation.navigate('Privacy')}><Text 
+        style={styles.menuButtonText}>Privacy policy</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        onPress={() => navigation.navigate('Contact')}
+        ><Text
+         style={styles.menuButtonText}>Contact us </Text></TouchableOpacity>
     </View>
   );    
 
