@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
@@ -9,6 +9,7 @@ import Modal from 'react-native-modal';
 
 
 const AuthScreen = ({ navigation }) => {
+  const passRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
@@ -63,17 +64,21 @@ const AuthScreen = ({ navigation }) => {
       <TextInput
         style={styles.input}
         value={email}
+        placeholder='johndoe10'
         onChangeText={setEmail}
-        underlineColorAndroid="black"
+        onSubmitEditing={() => passRef.current.focus()}
+        returnKeyType="next"
+        blurOnSubmit={false}
       />
 
       <Text style={styles.inputLabel}>Password:</Text>
       <TextInput
+        ref={passRef}
         style={styles.input}
         value={password}
+        placeholder='********'
         onChangeText={setPassword}
         secureTextEntry
-        underlineColorAndroid="black"
       />
 
       <TouchableOpacity
@@ -137,10 +142,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
-    height: 40,
+    height: 20,
     paddingLeft: 10,
-    marginBottom: 25,
+    marginBottom: 20,
     width: '100%',
+    borderBottomColor:'black',
+    borderBottomWidth: 1,
   },
   button: {
     backgroundColor: '#BABABA',
