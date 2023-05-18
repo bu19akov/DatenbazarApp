@@ -36,6 +36,14 @@ const Auth = ({navigation}) => {
         onPress={() => navigation.navigate('Contact')}
         ><Text
          style={styles.menuButtonText}>Contact us </Text></TouchableOpacity>
+         <TouchableOpacity style={styles.menuButton}
+         onPress={()=> navigation.navigate('SignUp/Card')}>
+          <Text style={styles.menuButtonText}>Sign Up</Text>
+         </TouchableOpacity>
+         <TouchableOpacity style={styles.menuButton}
+         onPress={()=> navigation.navigate('HealthStat')}>
+          <Text style={styles.menuButtonText}>HealthStat</Text>
+         </TouchableOpacity>
     </View>
   );    
 

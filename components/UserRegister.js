@@ -7,10 +7,6 @@ const UserRegister = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const registerUser = () => {
-    // Logik für die Registrierung hinzufügen
-  };
-
   return (
     <View style={styles.container}>
         <Image

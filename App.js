@@ -9,6 +9,8 @@ import Product from './components/Product';
 import Contact from './components/Contact';
 import Privacy from './components/Privacy';
 import About from './components/About';
+import CardInformation from './components/CardInformation';
+import GenHealthStat from './components/GenHealthStat';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +27,8 @@ export default function App() {
           <Stack.Screen name="Product" component={Product} />
           <Stack.Screen name="Privacy" component={Privacy} />
           <Stack.Screen name="About" component={About} />
+          <Stack.Screen name="SignUp/Card" component={CardInformation} />
+          <Stack.Screen name="HealthStat" component={GenHealthStat} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
