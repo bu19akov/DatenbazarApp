@@ -83,7 +83,7 @@ const GenHealthStat = ({ navigation, questions }) => {
                 style={[
                   styles.checklistButton,
                   selectedOptions[index] === option &&
-                    styles.checklistButtonSelected,
+                  styles.checklistButtonSelected,
                 ]}
                 onPress={() => handleCheckboxPress(index, option)}
               >
@@ -114,25 +114,25 @@ const GenHealthStat = ({ navigation, questions }) => {
 
   return (
     <View style={styles.container}>
-     <Text style={styles.title}>
-  {questions === 'General health status'
-    ? 'Medical history'
-    : questions === 'Specific Health Statistics'
-    ? 'Genetic test results'
-    : questions === 'Prescription records'
-    ? 'Fitness tracker data'
-    : questions === 'Blood pressure readings'
-    ? 'Dietary habits'
-    : questions === 'Sleep patterns'
-    ? 'Allergy information'
-    : questions === 'Immunization records'
-    ? 'Lab test results'
-    : questions === 'Music preferences'
-    ? 'Movie preferences'
-    : questions === 'TV show preferences'
-    ? 'TV show preferences'
-    : ''}
-</Text>
+      <Text style={styles.title}>
+        {questions === 'General health status'
+          ? 'Medical history'
+          : questions === 'Specific Health Statistics'
+            ? 'Genetic test results'
+            : questions === 'Prescription records'
+              ? 'Fitness tracker data'
+              : questions === 'Blood pressure readings'
+                ? 'Dietary habits'
+                : questions === 'Sleep patterns'
+                  ? 'Allergy information'
+                  : questions === 'Immunization records'
+                    ? 'Lab test results'
+                    : questions === 'Music preferences'
+                      ? 'Movie preferences'
+                      : questions === 'TV show preferences'
+                        ? 'TV show preferences'
+                        : ''}
+      </Text>
 
       <TouchableOpacity
         style={styles.menuButton}
@@ -155,94 +155,94 @@ const GenHealthStat = ({ navigation, questions }) => {
 
       <View style={styles.formContainer}>{renderQuestions()}</View>
 
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
+      <TouchableOpacity style={styles.button} onPress={() => { }}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 20,
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-    },
-    inputLabel: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    input: {
-      height: 40,
-      width: Dimensions.get('window').width - 40,
-      borderColor: 'black',
-      borderWidth: 1,
-      paddingHorizontal: 10,
-      marginBottom: 20,
-    },
-    checklistContainer: {
-      marginBottom: 20,
-    },
-    divider: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    checklistButton: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 10,
-    },
-    checklistButtonSelected: {
-      backgroundColor: '#c2e8c2',
-    },
-    checklistIcon: {
-      marginRight: 10,
-    },
-    checklistText: {
-      fontSize: 16,
-    },
-    button: {
-      backgroundColor: 'blue',
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      borderRadius: 5,
-      marginTop: 20,
-    },
-    buttonText: {
-      color: 'white',
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    slideInMenu: {
-      backgroundColor: 'white',
-      padding: 20,
-      width: Dimensions.get('window').width * 0.8,
-      height: Dimensions.get('window').height,
-    },
-    closeIconContainer: {
-      alignItems: 'flex-end',
-    },
-    menuButton: {
-      marginBottom: 20,
-    },
-    menuButtonText: {
-      fontSize: 18,
-      fontWeight: 'bold',
-    },
-    formContainer: {
-      marginBottom: 20,
-    },
-    modal: {
-      margin: 0,
-    },
-  });
-  
-  export default GenHealthStat;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  inputLabel: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    width: Dimensions.get('window').width - 40,
+    borderColor: 'black',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+  },
+  checklistContainer: {
+    marginBottom: 20,
+  },
+  divider: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  checklistButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  checklistButtonSelected: {
+    backgroundColor: '#c2e8c2',
+  },
+  checklistIcon: {
+    marginRight: 10,
+  },
+  checklistText: {
+    fontSize: 16,
+  },
+  button: {
+    backgroundColor: 'blue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  slideInMenu: {
+    backgroundColor: 'white',
+    padding: 20,
+    width: Dimensions.get('window').width * 0.8,
+    height: Dimensions.get('window').height,
+  },
+  closeIconContainer: {
+    alignItems: 'flex-end',
+  },
+  menuButton: {
+    marginBottom: 20,
+  },
+  menuButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  formContainer: {
+    marginBottom: 20,
+  },
+  modal: {
+    margin: 0,
+  },
+});
+
+export default GenHealthStat;
