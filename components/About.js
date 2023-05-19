@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#F0F0F0',
         alignItems: 'center',
     },
-    
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -97,13 +96,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         marginTop: 30,
         marginBottom: 30,
-      },
-      title: {
+    },
+    title: {
         fontSize: 25,
         color: 'black',
         textAlign: 'center',
         flex: 1, 
-      },
+    },
     inputLabel: {
         alignSelf: 'flex-start',
         marginBottom: 5,
