@@ -7,7 +7,6 @@ import GoogleIcon from 'react-native-vector-icons/FontAwesome';
 import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 
-
 const AuthScreen = ({ navigation }) => {
   const passRef = useRef(null);
   const [email, setEmail] = useState("");
@@ -23,10 +22,24 @@ const AuthScreen = ({ navigation }) => {
           <CloseIcon name="close" size={30} color="black" />
         </TouchableOpacity>
       </View>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>About</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>Product</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>Privacy</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}><Text style={styles.menuButtonText}>Contact us</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        onPress={() => [navigation.navigate('About'), setModalVisible(false)]}><Text 
+        style={styles.menuButtonText}>About us</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        ><Text
+         style={styles.menuButtonText}
+         onPress={()=> [navigation.navigate('Product'), setModalVisible(false)]}>Product</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        onPress={() => [navigation.navigate('Privacy'), setModalVisible(false)]}><Text 
+        style={styles.menuButtonText}>Privacy policy</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menuButton}
+        onPress={() => [navigation.navigate('Contact'), setModalVisible(false)]}
+        ><Text
+         style={styles.menuButtonText}>Contact us </Text></TouchableOpacity>
+         <TouchableOpacity style={styles.menuButton}
+         onPress={()=> [navigation.navigate('HealthStat'), setModalVisible(false)]}>
+          <Text style={styles.menuButtonText}>HealthStat</Text>
+         </TouchableOpacity>
     </View>
   );    
 
