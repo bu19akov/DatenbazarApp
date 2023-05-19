@@ -6,7 +6,7 @@ const DataForSale = ({ dataName, price}) => {
 
   return (
       <TouchableOpacity style={styles.container}>
-          <Image source={require('../assets/icon.png')} style={styles.image} />
+          <Image source={require('../../assets/icon.png')} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.title}>{dataName}</Text>
             <Text style={styles.text}>{price}$ per month</Text>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, StatusBar, SafeAreaView } from 'react-native';
 import DataForSaleCard from './DataForSaleCard';
-import { DataForSaleJSON } from '../assets/DataForSaleJSON';
+import { DataForSaleJSON } from '../../assets/DataForSaleJSON';
 
 export default function DataForSaleOverview() {
   return (

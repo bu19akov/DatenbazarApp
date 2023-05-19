@@ -2,21 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AuthScreen from './components/AuthScreen';
-import RegScreen from './components/RegistrationScreen'; 
-import DataForSaleOverview from './components/DataForSaleOverview';
-import DataForSale from './components/DataForSale';
-import DataForSaleList from './components/DataForSaleList';
-import AccountSettings from './components/AccountSettings';
+import AuthScreen from './components/Vladimir/AuthScreen';
+import RegScreen from './components/Vladimir/RegistrationScreen'; 
+import DataForSaleOverview from './components/Yehor/DataForSaleOverview';
+import DataForSale from './components/Yehor/DataForSale';
+import DataForSaleList from './components/Yehor/DataForSaleList';
+import AccountSettings from './components/Yehor/AccountSettings';
 
-import Product from './components/Product';
-import Contact from './components/Contact';
-import Privacy from './components/Privacy';
-import About from './components/About';
-import GenHealthStat from './components/GenHealthStat';
+import Product from './components/Carl/Product';
+import Contact from './components/Carl/Contact';
+import Privacy from './components/Carl/Privacy';
+import About from './components/Carl/About';
+import GenHealthStat from './components/Carl/GenHealthStat';
 
-import MyAccount from './components/MyAccount';
-import SuccessfullMessage from './components/SuccessfullMessage';
+import MyAccount from './components/Nadia/MyAccount';
+import SuccessfullMessage from './components/Nadia/SuccessfullMessage';
 
 const Stack = createStackNavigator();
 
