@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 
 export default function MyAccount() {
@@ -36,15 +35,16 @@ export default function MyAccount() {
         </TouchableOpacity>
       </View>
 
-      <Picker
-        selectedValue={null}
-        onValueChange={(itemValue) => itemValue === 'sale' ? navigation.navigate('DataForSale') : null}
-        style={styles.picker}
-      >
-        <Picker.Item label="My Data for Sale" value="sale" />
-        <Picker.Item label="Data Sale Transactions" value="transactions" />
-        <Picker.Item label="Contact Support" value="support" />
-      </Picker>
+
+      <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('MyDataForSale')}>
+        <Text>My Data for Sale</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('DataSellTransactions')}>
+        <Text>Data Sell Transactions</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('ContactSupport')}>
+        <Text>Contact Support</Text>
+      </TouchableOpacity>
 
     </View>
   );
@@ -88,9 +88,22 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
-  picker: {
-    height: 50,
-    width: '100%',
+  transactionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 20,
-  }
+  },
+  transactionButton: {
+    width: '30%',
+    backgroundColor: '#ddd',
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  option: {
+    backgroundColor: '#ddd',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
 });
