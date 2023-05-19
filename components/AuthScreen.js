@@ -96,7 +96,8 @@ const AuthScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={authenticateUser}
+        // onPress={authenticateUser}
+        onPress={() => navigation.navigate("MyAccount")}
       >
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>

@@ -4,11 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AuthScreen from './components/AuthScreen';
 import RegScreen from './components/RegistrationScreen'; 
+
 import Product from './components/Product';
 import Contact from './components/Contact';
 import Privacy from './components/Privacy';
 import About from './components/About';
 import GenHealthStat from './components/GenHealthStat';
+
+import MyAccount from './components/MyAccount';
+import SuccessfullMessage from './components/SuccessfullMessage';
 
 const Stack = createStackNavigator();
 
@@ -20,11 +24,15 @@ export default function App() {
         <Stack.Navigator initialRouteName="AuthScreen" screenOptions={{headerShown: false}}>
           <Stack.Screen name="AuthScreen" component={AuthScreen} />
           <Stack.Screen name="RegScreen" component={RegScreen} />
+          {/* Carl */}
           <Stack.Screen name="Contact" component={Contact} />
           <Stack.Screen name="Product" component={Product} />
           <Stack.Screen name="Privacy" component={Privacy} />
           <Stack.Screen name="About" component={About} />
           <Stack.Screen name="HealthStat" component={GenHealthStat} />
+          {/* Nadia */}
+          <Stack.Screen name="MyAccount" component={MyAccount} options={{ title: 'My Account' }} />  
+          <Stack.Screen name="SuccessfullMessage" component={SuccessfullMessage} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
