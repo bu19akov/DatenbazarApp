@@ -14,7 +14,7 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SuccessfullMessage" screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName="MyAccount" screenOptions={{headerShown: false}}>
           <Stack.Screen name="AuthScreen" component={AuthScreen} />
           <Stack.Screen name="RegScreen" component={RegScreen} />
           <Stack.Screen name="MyAccount" component={MyAccount} options={{ title: 'My Account' }} />  
