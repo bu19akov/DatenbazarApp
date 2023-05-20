@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
-const DataForSale = ({ dataName, price}) => {
+const DataForSale = ({ dataName, price, questions}) => {
+  const navigation = useNavigation();
 
+  const handleOnPress = () => {
+    navigation.navigate('DataForSaleQuestionnaire', {questions, price});
+  };
 
   return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={handleOnPress}>
           <Image source={require('../../assets/icon.png')} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.title}>{dataName}</Text>
