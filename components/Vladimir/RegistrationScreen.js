@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -77,6 +78,15 @@ const RegistrationScreen = ({ navigation }) => {
     }
   }
 
+  const savePassword = async (username, password) => {
+    try {
+        await AsyncStorage.setItem(username, password);
+        console.log('Password ' + password + ' for username ' + username + ' saved successfully!');
+    } catch (error) {
+      console.log('Error saving password:', error);
+    }
+  };
+
   const nextStep = () => {
     if (step === 0) {
       if (!personalInfo.name) {
@@ -138,6 +148,8 @@ const RegistrationScreen = ({ navigation }) => {
         Alert.alert('Error', 'Please enter your hobby.');
         return;
       }
+
+      savePassword(personalInfo.username, personalInfo.password);
     }
   
     setStep(step + 1);

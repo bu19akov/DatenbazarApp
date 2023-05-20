@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 import FacebookIcon from 'react-native-vector-icons/FontAwesome';
 import GoogleIcon from 'react-native-vector-icons/FontAwesome';
 import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthScreen = ({ navigation }) => {
   const passRef = useRef(null);
@@ -43,8 +44,25 @@ const AuthScreen = ({ navigation }) => {
     </View>
   );    
 
-  const authenticateUser = () => {
-    // Logik für die Authentifizierung hinzufügen
+  const authenticateUser = async () => {
+    try {
+      // Fetch the password from storage
+      const storedPassword = await AsyncStorage.getItem(email);
+  
+      // Compare with the entered password
+      if (password === storedPassword) {
+        navigation.navigate('MyAccount');
+      } else {
+        Alert.alert('Incorrect Credentials', 'Please enter correct username and password.', [
+          {text: 'Okay'}
+        ]);
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert('An error occurred', 'Please try again later.', [
+        {text: 'Okay'}
+      ]);
+    }
   };
 
   return (
@@ -97,7 +115,7 @@ const AuthScreen = ({ navigation }) => {
       <TouchableOpacity
         style={styles.button}
         // onPress={authenticateUser}
-        onPress={() => navigation.navigate("MyAccount")}
+        onPress={authenticateUser}
       >
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
