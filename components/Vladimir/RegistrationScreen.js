@@ -65,6 +65,24 @@ const RegistrationScreen = ({ navigation }) => {
     return re.test(email);
   };
 
+  const isValidUsername = async (username) => {
+    try {
+      const response = await fetch(`http://10.0.2.2:3000/check-username/${username}`);
+      const data = await response.json();
+      
+      if (data.unique) {
+        console.log('The username ' + username + ' is unique!');
+        return true;
+      } else {
+        console.log('The username ' + username + ' is not unique.');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      return false; // Or throw an error or handle this however you like
+    }
+  }
+
   const isValidPassword = (password) => {
     // Minimum 1 number, 1 letter, 1 special symbol, and at least 8 characters
     var re = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
@@ -77,67 +95,103 @@ const RegistrationScreen = ({ navigation }) => {
     }
   }
 
-  const nextStep = () => {
+  async function createUser(userData) {
+    try {
+      const response = await fetch('http://10.0.2.2:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        console.log(`New user created with the following id: ${result.id}`);
+      } else {
+        console.error(`Error occurred while creating user: ${result.error}`);
+      }
+    } catch (err) {
+      console.error(`Error occurred while creating user: ${err}`);
+    }
+  }
+
+  const nextStep = async () => {
     if (step === 0) {
       if (!personalInfo.name) {
-        Alert.alert('Error', 'Please enter your name.');
+        Alert.alert('Name is empty', 'Please enter your name.');
         return;
       }
   
       if (!personalInfo.surname) {
-        Alert.alert('Error', 'Please enter your surname.');
+        Alert.alert('Surname is empty', 'Please enter your surname.');
         return;
       }
   
       if (!personalInfo.dateOfBirth) {
-        Alert.alert('Error', 'Please enter your date of birth.');
+        Alert.alert('Date of birth is empty', 'Please enter your date of birth.');
         return;
       }
 
       if (!isValidDateOfBirth(personalInfo.dateOfBirth)) {
-        Alert.alert('Error', 'Please enter a valid date of birth.');
+        Alert.alert('Invalid date of birth', 'Please enter a valid date of birth.');
         return;
       }
   
       if (!isValidEmail(personalInfo.email)) {
-        Alert.alert('Error', 'Please enter a valid email address.');
+        Alert.alert('Invalid email', 'Please enter a valid email address.');
         return;
+      }
+
+      const isUsernameUnique = await isValidUsername(personalInfo.username);
+      if (!isUsernameUnique) {
+          Alert.alert('This username already exists', 'Please enter another username.');
+          return;
       }
   
       if (!isValidPassword(personalInfo.password)) {
-        Alert.alert('Error', 'Please enter a valid password. It should contain at least 1 number, 1 letter, 1 special symbol, and be at least 8 characters long.');
+        Alert.alert('Invalid password', 'Please enter a valid password. It should contain at least 1 number, 1 letter, 1 special symbol, and be at least 8 characters long.');
         return;
       }
     } else if (step === 1) {
       if (!payoutDetails.iban) {
-        Alert.alert('Error', 'Please enter your IBAN.');
+        Alert.alert('IBAN is empty', 'Please enter your IBAN.');
         return;
       }
 
       if (!payoutDetails.bic) {
-        Alert.alert('Error', 'Please enter your BIC.');
+        Alert.alert('BIC is empty', 'Please enter your BIC.');
         return;
       }
     } else if (step === 2) {
       if (!dataForSale.gender) {
-        Alert.alert('Error', 'Please enter your gender.');
+        Alert.alert('Gender is empty', 'Please enter your gender.');
         return;
       }
 
       if (!dataForSale.age) {
-        Alert.alert('Error', 'Please enter your age.');
+        Alert.alert('Age is empty', 'Please enter your age.');
         return;
       }
 
       if (!dataForSale.occupation) {
-        Alert.alert('Error', 'Please enter your occupation.');
+        Alert.alert('Occupation is empty', 'Please enter your occupation.');
         return;
       }
 
       if (!dataForSale.hobby) {
-        Alert.alert('Error', 'Please enter your hobby.');
+        Alert.alert('Hobby is empty', 'Please enter your hobby.');
         return;
       }
+
+      const userData = {
+        username: personalInfo.username,
+        email: personalInfo.email,
+        password: personalInfo.password, // Password must be hashed
+      };
+
+      createUser(userData).catch(console.dir);
     }
   
     setStep(step + 1);

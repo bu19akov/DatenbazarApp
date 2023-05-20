@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 import FacebookIcon from 'react-native-vector-icons/FontAwesome';
@@ -9,7 +9,7 @@ import Modal from 'react-native-modal';
 
 const AuthScreen = ({ navigation }) => {
   const passRef = useRef(null);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -43,9 +43,29 @@ const AuthScreen = ({ navigation }) => {
     </View>
   );    
 
-  const authenticateUser = () => {
-    // Logik für die Authentifizierung hinzufügen
+  const authenticateUser = async () => {
+    try {
+      const response = await fetch(`http://10.0.2.2:3000/check-credentials`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password }) // send username and password to the server
+      });
+  
+      const data = await response.json();
+      
+      if (data.valid) {
+        console.log('User credentials are valid! User is logged in!');
+        navigation.navigate("MyAccount")
+      } else {
+        Alert.alert('Invalid credentials', 'Username or password is incorrect.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+  
 
   return (
     <View style={styles.container}>
@@ -76,9 +96,9 @@ const AuthScreen = ({ navigation }) => {
       <Text style={styles.inputLabel}>Username:</Text>
       <TextInput
         style={styles.input}
-        value={email}
+        value={username}
         placeholder='johndoe10'
-        onChangeText={setEmail}
+        onChangeText={setUsername}
         onSubmitEditing={() => passRef.current.focus()}
         returnKeyType="next"
         blurOnSubmit={false}
@@ -96,8 +116,7 @@ const AuthScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        // onPress={authenticateUser}
-        onPress={() => navigation.navigate("MyAccount")}
+        onPress={authenticateUser}
       >
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
