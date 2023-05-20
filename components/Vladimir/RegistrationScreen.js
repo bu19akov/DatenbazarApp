@@ -87,65 +87,71 @@ const RegistrationScreen = ({ navigation }) => {
     }
   };
 
-  const nextStep = () => {
+  const nextStep = async () => {
     if (step === 0) {
       if (!personalInfo.name) {
-        Alert.alert('Error', 'Please enter your name.');
+        Alert.alert('Name is empty', 'Please enter your name.');
         return;
       }
   
       if (!personalInfo.surname) {
-        Alert.alert('Error', 'Please enter your surname.');
+        Alert.alert('Surname is empty', 'Please enter your surname.');
         return;
       }
   
       if (!personalInfo.dateOfBirth) {
-        Alert.alert('Error', 'Please enter your date of birth.');
+        Alert.alert('Date of birth is empty', 'Please enter your date of birth.');
         return;
       }
 
       if (!isValidDateOfBirth(personalInfo.dateOfBirth)) {
-        Alert.alert('Error', 'Please enter a valid date of birth.');
+        Alert.alert('Invalid date of birth', 'Please enter a valid date of birth.');
         return;
       }
   
       if (!isValidEmail(personalInfo.email)) {
-        Alert.alert('Error', 'Please enter a valid email address.');
+        Alert.alert('Invalid email', 'Please enter a valid email address.');
+        return;
+      }
+
+      const existingPassword = await AsyncStorage.getItem(personalInfo.username);
+      if (existingPassword !== null) {
+        Alert.alert('Username Taken', 'Please choose a different username.');
         return;
       }
   
       if (!isValidPassword(personalInfo.password)) {
-        Alert.alert('Error', 'Please enter a valid password. It should contain at least 1 number, 1 letter, 1 special symbol, and be at least 8 characters long.');
+        Alert.alert('Invalid password', 'Please enter a valid password. It should contain at least 1 number, 1 letter, 1 special symbol, and be at least 8 characters long.');
         return;
       }
     } else if (step === 1) {
       if (!payoutDetails.iban) {
-        Alert.alert('Error', 'Please enter your IBAN.');
+        Alert.alert('IBAN is empty', 'Please enter your IBAN.');
         return;
       }
 
       if (!payoutDetails.bic) {
-        Alert.alert('Error', 'Please enter your BIC.');
+        Alert.alert('BIC is empty', 'Please enter your BIC.');
         return;
       }
     } else if (step === 2) {
       if (!dataForSale.gender) {
-        Alert.alert('Error', 'Please enter your gender.');
+        Alert.alert('Gender is empty', 'Please enter your gender.');
         return;
       }
 
       if (!dataForSale.age) {
-        Alert.alert('Error', 'Please enter your age.');
+        Alert.alert('Age is empty', 'Please enter your age.');
         return;
       }
 
       if (!dataForSale.occupation) {
-        Alert.alert('Error', 'Please enter your occupation.');
+        Alert.alert('Occupation is empty', 'Please enter your occupation.');
         return;
       }
 
       if (!dataForSale.hobby) {
-        Alert.alert('Error', 'Please enter your hobby.');
+        Alert.alert('Hobby is empty', 'Please enter your hobby.');
         return;
       }
 

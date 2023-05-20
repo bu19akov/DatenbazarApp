@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthScreen = ({ navigation }) => {
   const passRef = useRef(null);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -47,21 +47,17 @@ const AuthScreen = ({ navigation }) => {
   const authenticateUser = async () => {
     try {
       // Fetch the password from storage
-      const storedPassword = await AsyncStorage.getItem(email);
+      const storedPassword = await AsyncStorage.getItem(username);
   
       // Compare with the entered password
       if (password === storedPassword) {
         navigation.navigate('MyAccount');
       } else {
-        Alert.alert('Incorrect Credentials', 'Please enter correct username and password.', [
-          {text: 'Okay'}
-        ]);
+        Alert.alert('Incorrect Credentials', 'Please enter correct username and password.');
       }
     } catch (error) {
       console.error(error);
-      Alert.alert('An error occurred', 'Please try again later.', [
-        {text: 'Okay'}
-      ]);
+      Alert.alert('An error occurred', 'Please try again later.');
     }
   };
 
@@ -94,9 +90,9 @@ const AuthScreen = ({ navigation }) => {
       <Text style={styles.inputLabel}>Username:</Text>
       <TextInput
         style={styles.input}
-        value={email}
+        value={username}
         placeholder='johndoe10'
-        onChangeText={setEmail}
+        onChangeText={setUsername}
         onSubmitEditing={() => passRef.current.focus()}
         returnKeyType="next"
         blurOnSubmit={false}
