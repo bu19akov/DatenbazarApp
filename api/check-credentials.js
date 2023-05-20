@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     } else {
       res.json({ valid: false });
     }
-  } catch (err) {
+  } catch (err)  {
     console.error(`Error occurred while checking credentials: ${err}`);
     res.status(500).json({ error: 'An error occurred trying to check credentials' });
   }
