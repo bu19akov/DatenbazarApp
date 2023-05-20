@@ -8,6 +8,7 @@ import DataForSaleOverview from './components/Yehor/DataForSaleOverview';
 import DataForSale from './components/Yehor/DataForSale';
 import DataForSaleList from './components/Yehor/DataForSaleList';
 import AccountSettings from './components/Yehor/AccountSettings';
+import DataForSaleQuestionnaire from './components/Yehor/DataForSaleQuestionnaire';
 
 import Product from './components/Carl/Product';
 import Contact from './components/Carl/Contact';
@@ -42,6 +43,7 @@ export default function App() {
           <Stack.Screen name="DataForSaleOverview" component={DataForSaleOverview} options={{ title: "Data for Sale" }} />
           <Stack.Screen name="DataForSaleList" component={DataForSaleList} options={{ title: "Data for Sale" }} />
           <Stack.Screen name="AccountSettings" component={AccountSettings} options={{ title: "Account Settings" }} />
+          <Stack.Screen name="DataForSaleQuestionnaire" component={DataForSaleQuestionnaire} options={{ title: "Questionnaire" }} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

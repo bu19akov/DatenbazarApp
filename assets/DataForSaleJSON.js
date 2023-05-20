@@ -2,7 +2,6 @@ export const DataForSaleJSON = [
   {
     image: require("../assets/icon.png"),
     dataCategory: "Health Data",
-    amount: "5",
     data: [
       {
         image: require("../assets/icon.png"),
@@ -180,7 +179,6 @@ export const DataForSaleJSON = [
   {
     image: require('../assets/icon.png'),
     dataCategory: "Entertainment data",
-    amount: "10",
     data: [
       {
         image: require('../assets/icon.png'),

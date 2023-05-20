@@ -27,6 +27,7 @@ const DataForSaleList = ({ route }) => {
                   key={index}
                   dataName={data.dataName}
                   price={data.price}
+                  questions={data.questions}
                 />
               );
             })}

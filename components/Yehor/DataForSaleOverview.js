@@ -12,7 +12,7 @@ export default function DataForSaleOverview() {
 		<View style={styles.dataContainer}>
 			{DataForSaleJSON.map((data, index) => {
 				return (
-					<DataForSaleCard key={index} image={data.image} dataCategory={data.dataCategory} amount={data.amount} data={data.data} />
+					<DataForSaleCard key={index} image={data.image} dataCategory={data.dataCategory} amount={data.data.length} data={data.data} />
 				)
 			})}
 		</View>

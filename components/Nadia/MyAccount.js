@@ -46,7 +46,7 @@ export default function MyAccount() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('DataForSale')}>
+      <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('DataForSaleOverview')}>
         <Text>My Data for Sale</Text>
         <Ionicons name="chevron-forward" size={24} color="black" />
       </TouchableOpacity>

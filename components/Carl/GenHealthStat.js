@@ -22,39 +22,39 @@ const GenHealthStat = ({ navigation, questions }) => {
     }));
   };
 
-  const SlideInMenu = () => (
-    <View style={styles.slideInMenu}>
-      <View style={styles.closeIconContainer}>
-        <TouchableOpacity onPress={() => setModalVisible(false)}>
-          <CloseIcon name="close" size={30} color="black" />
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.navigate('About')}
-      >
-        <Text style={styles.menuButtonText}>About us</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.navigate('Product')}
-      >
-        <Text style={styles.menuButtonText}>Product</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.navigate('Privacy')}
-      >
-        <Text style={styles.menuButtonText}>Privacy policy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.menuButton}
-        onPress={() => navigation.navigate('Contact')}
-      >
-        <Text style={styles.menuButtonText}>Contact us</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  // const SlideInMenu = () => (
+  //   <View style={styles.slideInMenu}>
+  //     <View style={styles.closeIconContainer}>
+  //       <TouchableOpacity onPress={() => setModalVisible(false)}>
+  //         <CloseIcon name="close" size={30} color="black" />
+  //       </TouchableOpacity>
+  //     </View>
+  //     <TouchableOpacity
+  //       style={styles.menuButton}
+  //       onPress={() => navigation.navigate('About')}
+  //     >
+  //       <Text style={styles.menuButtonText}>About us</Text>
+  //     </TouchableOpacity>
+  //     <TouchableOpacity
+  //       style={styles.menuButton}
+  //       onPress={() => navigation.navigate('Product')}
+  //     >
+  //       <Text style={styles.menuButtonText}>Product</Text>
+  //     </TouchableOpacity>
+  //     <TouchableOpacity
+  //       style={styles.menuButton}
+  //       onPress={() => navigation.navigate('Privacy')}
+  //     >
+  //       <Text style={styles.menuButtonText}>Privacy policy</Text>
+  //     </TouchableOpacity>
+  //     <TouchableOpacity
+  //       style={styles.menuButton}
+  //       onPress={() => navigation.navigate('Contact')}
+  //     >
+  //       <Text style={styles.menuButtonText}>Contact us</Text>
+  //     </TouchableOpacity>
+  //   </View>
+  // );
 
   const renderQuestions = () => {
     return questions.map((question, index) => {
@@ -150,10 +150,10 @@ const GenHealthStat = ({ navigation, questions }) => {
         backdropColor="white"
         style={styles.modal}
       >
-        <SlideInMenu />
+        {/* <SlideInMenu /> */}
       </Modal>
 
-      <View style={styles.formContainer}>{renderQuestions()}</View>
+      <View style={styles.formContainer}>{questions && renderQuestions()}</View>
 
       <TouchableOpacity style={styles.button} onPress={() => { }}>
         <Text style={styles.buttonText}>Submit</Text>
