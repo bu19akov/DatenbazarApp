@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -66,6 +65,24 @@ const RegistrationScreen = ({ navigation }) => {
     return re.test(email);
   };
 
+  const isValidUsername = async (username) => {
+    try {
+      const response = await fetch(`http://10.0.2.2:3000/check-username/${username}`);
+      const data = await response.json();
+      
+      if (data.unique) {
+        console.log('The username ' + username + ' is unique!');
+        return true;
+      } else {
+        console.log('The username ' + username + ' is not unique.');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      return false; // Or throw an error or handle this however you like
+    }
+  }
+
   const isValidPassword = (password) => {
     // Minimum 1 number, 1 letter, 1 special symbol, and at least 8 characters
     var re = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
@@ -78,14 +95,27 @@ const RegistrationScreen = ({ navigation }) => {
     }
   }
 
-  const savePassword = async (username, password) => {
+  async function createUser(userData) {
     try {
-        await AsyncStorage.setItem(username, password);
-        console.log('Password ' + password + ' for username ' + username + ' saved successfully!');
-    } catch (error) {
-      console.log('Error saving password:', error);
+      const response = await fetch('http://10.0.2.2:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        console.log(`New user created with the following id: ${result.id}`);
+      } else {
+        console.error(`Error occurred while creating user: ${result.error}`);
+      }
+    } catch (err) {
+      console.error(`Error occurred while creating user: ${err}`);
     }
-  };
+  }
 
   const nextStep = async () => {
     if (step === 0) {
@@ -114,10 +144,10 @@ const RegistrationScreen = ({ navigation }) => {
         return;
       }
 
-      const existingPassword = await AsyncStorage.getItem(personalInfo.username);
-      if (existingPassword !== null) {
-        Alert.alert('Username Taken', 'Please choose a different username.');
-        return;
+      const isUsernameUnique = await isValidUsername(personalInfo.username);
+      if (!isUsernameUnique) {
+          Alert.alert('This username already exists', 'Please enter another username.');
+          return;
       }
   
       if (!isValidPassword(personalInfo.password)) {
@@ -155,7 +185,13 @@ const RegistrationScreen = ({ navigation }) => {
         return;
       }
 
-      savePassword(personalInfo.username, personalInfo.password);
+      const userData = {
+        username: personalInfo.username,
+        email: personalInfo.email,
+        password: personalInfo.password, // Password must be hashed
+      };
+
+      createUser(userData).catch(console.dir);
     }
   
     setStep(step + 1);

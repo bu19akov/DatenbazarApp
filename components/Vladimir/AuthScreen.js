@@ -6,7 +6,6 @@ import FacebookIcon from 'react-native-vector-icons/FontAwesome';
 import GoogleIcon from 'react-native-vector-icons/FontAwesome';
 import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthScreen = ({ navigation }) => {
   const passRef = useRef(null);
@@ -46,20 +45,27 @@ const AuthScreen = ({ navigation }) => {
 
   const authenticateUser = async () => {
     try {
-      // Fetch the password from storage
-      const storedPassword = await AsyncStorage.getItem(username);
+      const response = await fetch(`http://10.0.2.2:3000/check-credentials`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password }) // send username and password to the server
+      });
   
-      // Compare with the entered password
-      if (password === storedPassword) {
-        navigation.navigate('MyAccount');
+      const data = await response.json();
+      
+      if (data.valid) {
+        console.log('User credentials are valid! User is logged in!');
+        navigation.navigate("MyAccount")
       } else {
-        Alert.alert('Incorrect Credentials', 'Please enter correct username and password.');
+        Alert.alert('Invalid credentials', 'Username or password is incorrect.');
       }
     } catch (error) {
-      console.error(error);
-      Alert.alert('An error occurred', 'Please try again later.');
+      console.error('Error:', error);
     }
   };
+  
 
   return (
     <View style={styles.container}>
@@ -110,7 +116,6 @@ const AuthScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        // onPress={authenticateUser}
         onPress={authenticateUser}
       >
         <Text style={styles.buttonText}>Log in</Text>
