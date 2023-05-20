@@ -67,7 +67,7 @@ const RegistrationScreen = ({ navigation }) => {
 
   const isValidUsername = async (username) => {
     try {
-      const response = await fetch(`http://10.0.2.2:3000/check-username/${username}`);
+      const response = await fetch(`https://datenbazar-app.vercel.app/api/check-username/${username}`);
       const data = await response.json();
       
       if (data.unique) {
@@ -97,7 +97,7 @@ const RegistrationScreen = ({ navigation }) => {
 
   async function createUser(userData) {
     try {
-      const response = await fetch('http://10.0.2.2:3000/users', {
+      const response = await fetch('https://datenbazar-app.vercel.app/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

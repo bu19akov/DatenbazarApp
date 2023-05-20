@@ -45,7 +45,7 @@ const AuthScreen = ({ navigation }) => {
 
   const authenticateUser = async () => {
     try {
-      const response = await fetch(`http://10.0.2.2:3000/check-credentials`, {
+      const response = await fetch(`https://datenbazar-app.vercel.app/api/check-credentials`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
