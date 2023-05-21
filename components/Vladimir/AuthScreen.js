@@ -110,6 +110,7 @@ const AuthScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Sign up with Email</Text>
         </View>
       </TouchableOpacity>
+    {/*
       <TouchableOpacity style={styles.button} onPress={() => {}}>
         <View style={styles.buttonContent}>
           <FacebookIcon name="facebook-square" size={20} color="black"/>
@@ -122,19 +123,7 @@ const AuthScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Sign up with Google</Text>
         </View>
       </TouchableOpacity>
-
-      <TouchableOpacity style={[styles.button, {marginTop:100}]} onPress={() => navigation.navigate("DataForSaleOverview")}>
-        <View style={styles.buttonContent}>
-          <Text style={styles.buttonText}>Data for Sale page</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={[styles.button]} onPress={() => navigation.navigate("AccountSettings")}>
-        <View style={styles.buttonContent}>
-          <Text style={styles.buttonText}>Account Settings page</Text>
-        </View>
-      </TouchableOpacity>
-
+    */}
     </View>
     
   );
