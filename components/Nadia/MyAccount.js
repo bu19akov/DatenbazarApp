@@ -38,11 +38,11 @@ export default function MyAccount() {
         <Text style={styles.input}>{username}</Text>
       </View>
 
-      <TouchableOpacity style={styles.option}>
+      {/* <TouchableOpacity style={styles.option}>
         <MaterialIcons name="verified-user" size={24} color="black" />
         <Text>Verified Profile</Text>
         <Ionicons name="chevron-forward" size={24} color="black" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     
       <Text style={styles.subtitle}>Transaction list</Text>
 
