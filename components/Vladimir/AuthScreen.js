@@ -36,10 +36,7 @@ const AuthScreen = ({ navigation }) => {
         onPress={() => [navigation.navigate('Contact'), setModalVisible(false)]}
         ><Text
          style={styles.menuButtonText}>Contact us </Text></TouchableOpacity>
-         <TouchableOpacity style={styles.menuButton}
-         onPress={()=> [navigation.navigate('HealthStat'), setModalVisible(false)]}>
-          <Text style={styles.menuButtonText}>HealthStat</Text>
-         </TouchableOpacity>
+         
     </View>
   );    
 
