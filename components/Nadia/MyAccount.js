@@ -48,16 +48,16 @@ export default function MyAccount() {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <MaterialIcons name="pending-actions" size={20} color="black" />
-          <Text>Awaiting Payments</Text>
+          <MaterialIcons name="pending-actions" size={20} color="black" style={styles.buttonIcon} />
+          <Text style={styles.buttonText}>Awaiting Payments</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <MaterialIcons name="autorenew" size={20} color="black" />
-          <Text>Transaction in Progress</Text>
+          <MaterialIcons name="autorenew" size={20} color="black" style={styles.buttonIcon} />
+          <Text style={styles.buttonText}>Transaction in Progress</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <MaterialIcons name="list" size={20} color="black" />
-          <Text>All transactions</Text>
+          <MaterialIcons name="list" size={20} color="black" style={styles.buttonIcon} />
+          <Text style={styles.buttonText}>All transactions</Text>
         </TouchableOpacity>
       </View>
 
@@ -122,11 +122,18 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
+  buttonText: {
+    textAlign: 'center',
+    flexWrap: 'wrap',
+  },
+  buttonIcon: {
+    alignSelf: 'center',
+  },
+  
   option: {
     flexDirection: 'row',
     alignItems: 'center',
