@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Icon2 from 'react-native-vector-icons/FontAwesome';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
-import FacebookIcon from 'react-native-vector-icons/FontAwesome';
-import GoogleIcon from 'react-native-vector-icons/FontAwesome';
-import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const Contact = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -40,26 +39,27 @@ const Contact = ({ navigation }) => {
     return (
 
         <View style={styles.container}>
-            <TouchableOpacity
-                style={styles.menuIcon}
-                onPress={() => setModalVisible(true)}
-            >
-                <Icon name="ellipsis-vertical" size={30} color="black" />
-            </TouchableOpacity>
-
-            <Modal
-                isVisible={modalVisible}
-                onBackdropPress={() => setModalVisible(false)}
-                onBackButtonPress={() => setModalVisible(false)}
-                style={styles.modal}
-                swipeDirection="right"
-                onSwipeComplete={() => setModalVisible(false)}
-                animationIn="slideInRight"
-                animationOut="slideOutRight"
-            >
-                <SlideInMenu />
-            </Modal>
-            <Text style={styles.title}>Contact us</Text>
+            <View style={[styles.header, { width: SCREEN_WIDTH }]}>
+                <TouchableOpacity onPress={() => navigation.navigate("AuthScreen")}>
+                    <Icon2 name="angle-left" size={40} color="black" />
+                </TouchableOpacity>
+                <Text style={styles.title}>Contact us</Text>
+                <TouchableOpacity style={styles.menuIcon} onPress={() => setModalVisible(true)}>
+                    <Icon name="ellipsis-vertical" size={30} color="black" />
+                     <Modal
+                        isVisible={modalVisible}
+                        onBackdropPress={() => setModalVisible(false)}
+                        onBackButtonPress={() => setModalVisible(false)}
+                        style={styles.modal}
+                        swipeDirection="right"
+                        onSwipeComplete={() => setModalVisible(false)}
+                        animationIn="slideInRight"
+                        animationOut="slideOutRight"
+                    >
+                        <SlideInMenu />
+                    </Modal>
+                </TouchableOpacity>
+            </View>
             <Text style={styles.text}>
                 <Text style={styles.bold}>Email:</Text> contact@DataBazar.com{"\n\n"}
                 <Text style={styles.bold}>Phone:</Text> +43 01 427778101{"\n\n"}
@@ -79,25 +79,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#F0F0F0',
         alignItems: 'center',
     },
-    menuIcon: {
-        position: 'absolute',
-        top: 50,
-        right: 10,
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: 'gray',
+        paddingVertical: 5,
+        paddingHorizontal: 15,
+        marginTop: 30,
+        marginBottom: 30,
     },
     title: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        marginBottom: 10,
+        fontSize: 25,
         color: 'black',
-        marginTop: 100,
-    },
-    header: {
-        fontSize: 15,
         textAlign: 'center',
-        marginBottom: 50,
-        color: 'black',
-        marginLeft: 60,
-        marginRight: 60,
+        flex: 1, 
     },
     inputLabel: {
         alignSelf: 'flex-start',

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 import FacebookIcon from 'react-native-vector-icons/FontAwesome';
@@ -7,9 +7,9 @@ import GoogleIcon from 'react-native-vector-icons/FontAwesome';
 import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 
-
-const Auth = ({navigation}) => {
-  const [email, setEmail] = useState("");
+const AuthScreen = ({ navigation }) => {
+  const passRef = useRef(null);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -23,33 +23,49 @@ const Auth = ({navigation}) => {
         </TouchableOpacity>
       </View>
         <TouchableOpacity style={styles.menuButton}
-        onPress={() => navigation.navigate('About')}><Text 
+        onPress={() => [navigation.navigate('About'), setModalVisible(false)]}><Text 
         style={styles.menuButtonText}>About us</Text></TouchableOpacity>
         <TouchableOpacity style={styles.menuButton}
         ><Text
          style={styles.menuButtonText}
-         onPress={()=> navigation.navigate('Product')}>Product</Text></TouchableOpacity>
+         onPress={()=> [navigation.navigate('Product'), setModalVisible(false)]}>Product</Text></TouchableOpacity>
         <TouchableOpacity style={styles.menuButton}
-        onPress={() => navigation.navigate('Privacy')}><Text 
+        onPress={() => [navigation.navigate('Privacy'), setModalVisible(false)]}><Text 
         style={styles.menuButtonText}>Privacy policy</Text></TouchableOpacity>
         <TouchableOpacity style={styles.menuButton}
-        onPress={() => navigation.navigate('Contact')}
+        onPress={() => [navigation.navigate('Contact'), setModalVisible(false)]}
         ><Text
          style={styles.menuButtonText}>Contact us </Text></TouchableOpacity>
          <TouchableOpacity style={styles.menuButton}
-         onPress={()=> navigation.navigate('SignUp/Card')}>
-          <Text style={styles.menuButtonText}>Sign Up</Text>
-         </TouchableOpacity>
-         <TouchableOpacity style={styles.menuButton}
-         onPress={()=> navigation.navigate('HealthStat')}>
+         onPress={()=> [navigation.navigate('HealthStat'), setModalVisible(false)]}>
           <Text style={styles.menuButtonText}>HealthStat</Text>
          </TouchableOpacity>
     </View>
   );    
 
-  const authenticateUser = () => {
-    // Logik für die Authentifizierung hinzufügen
+  const authenticateUser = async () => {
+    try {
+      const response = await fetch(`https://datenbazar-app.vercel.app/api/check-credentials`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password }) // send username and password to the server
+      });
+  
+      const data = await response.json();
+      
+      if (data.valid) {
+        console.log('User credentials are valid! User is logged in!');
+        navigation.navigate("MyAccount", { username: username })
+      } else {
+        Alert.alert('Invalid credentials', 'Username or password is incorrect.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+  
 
   return (
     <View style={styles.container}>
@@ -80,9 +96,9 @@ const Auth = ({navigation}) => {
       <Text style={styles.inputLabel}>Username:</Text>
       <TextInput
         style={styles.input}
-        value={email}
+        value={username}
         placeholder='johndoe10'
-        onChangeText={setEmail}
+        onChangeText={setUsername}
         onSubmitEditing={() => passRef.current.focus()}
         returnKeyType="next"
         blurOnSubmit={false}
@@ -123,7 +139,21 @@ const Auth = ({navigation}) => {
           <Text style={styles.buttonText}>Sign up with Google</Text>
         </View>
       </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.button, {marginTop:100}]} onPress={() => navigation.navigate("DataForSaleOverview")}>
+        <View style={styles.buttonContent}>
+          <Text style={styles.buttonText}>Data for Sale page</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.button]} onPress={() => navigation.navigate("AccountSettings")}>
+        <View style={styles.buttonContent}>
+          <Text style={styles.buttonText}>Account Settings page</Text>
+        </View>
+      </TouchableOpacity>
+
     </View>
+    
   );
 };
 
