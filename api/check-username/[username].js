@@ -1,4 +1,3 @@
-// api/check-username/[username].js
 const connect = require('../../mongo');
 
 module.exports = async (req, res) => {
