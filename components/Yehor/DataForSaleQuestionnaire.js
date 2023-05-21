@@ -7,11 +7,13 @@ import {
   StyleSheet,
   StatusBar,
 } from "react-native";
+import SuccessfullMessage from "../Nadia/SuccessfullMessage";
 
-const DataForSaleQuestionnaire = ({ route }) => {
+const DataForSaleQuestionnaire = ({ route, navigation }) => {
   const { questions } = route.params;
 
   const [answers, setAnswers] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (question, value) => {
     setAnswers((prevAnswers) => ({
@@ -25,11 +27,12 @@ const DataForSaleQuestionnaire = ({ route }) => {
     questions.forEach((question, index) => {
       const questionText = question.questionText;
       const answer = answers[index] || ""; // Default to empty string if answer is undefined
-  
+
       answersWithQuestions[questionText] = answer;
     });
     console.log(answersWithQuestions);
     setAnswers({});
+    setIsSubmitted(true);
   };
 
   const renderQuestion = (question, index) => {
@@ -93,10 +96,19 @@ const DataForSaleQuestionnaire = ({ route }) => {
 
   return (
     <View style={styles.safeArea}>
-      {questions.map((question, index) => renderQuestion(question, index))}
-      <TouchableOpacity onPress={handleSubmit} style={[styles.container, styles.submitButton]}>
-        <Text style={styles.title}>Submit</Text>
-      </TouchableOpacity>
+      {isSubmitted ? (
+        <SuccessfullMessage navigation={navigation} />
+      ) : (
+        <>
+          {questions.map((question, index) => renderQuestion(question, index))}
+          <TouchableOpacity
+            onPress={handleSubmit}
+            style={[styles.container, styles.submitButton]}
+          >
+            <Text style={styles.title}>Submit</Text>
+          </TouchableOpacity>
+        </>
+      )}
     </View>
   );
 };
@@ -106,7 +118,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#E0E0E0",
     paddingTop: StatusBar.currentHeight,
-
   },
   container: {
     width: "95%",
@@ -114,7 +125,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 5,
-
     margin: 5,
   },
   textContainer: {
