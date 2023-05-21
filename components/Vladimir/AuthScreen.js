@@ -57,7 +57,7 @@ const AuthScreen = ({ navigation }) => {
       
       if (data.valid) {
         console.log('User credentials are valid! User is logged in!');
-        navigation.navigate("MyAccount")
+        navigation.navigate("MyAccount", { username: username })
       } else {
         Alert.alert('Invalid credentials', 'Username or password is incorrect.');
       }
