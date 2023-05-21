@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { AuthContext } from '../Vladimir/AuthContext';
+
 
 export default function MyAccount() {
+  const { logoutUser } = useContext(AuthContext);
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -19,7 +22,12 @@ export default function MyAccount() {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "Yes", onPress: () => navigation.navigate('AuthScreen') }
+        { 
+          text: "Yes", 
+          onPress: () => {
+            logoutUser(navigation);
+          } 
+        }
       ]
     );
   };

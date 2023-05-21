@@ -7,6 +7,7 @@ import RegScreen from './components/Vladimir/RegistrationScreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { enableScreens } from 'react-native-screens';
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { AuthProvider } from './components/Vladimir/AuthContext';
 
 import DataForSaleOverview from './components/Yehor/DataForSaleOverview';
 import DataForSale from './components/Yehor/DataForSale';
@@ -29,6 +30,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    <AuthProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <NavigationContainer>
@@ -55,5 +57,6 @@ export default function App() {
         </NavigationContainer>
       </SafeAreaProvider>
     </GestureHandlerRootView>
+    </AuthProvider>
   );
 }

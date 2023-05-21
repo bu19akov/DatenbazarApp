@@ -1,17 +1,19 @@
-import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert } from 'react-native';
+import React, { useState, useRef, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 import FacebookIcon from 'react-native-vector-icons/FontAwesome';
 import GoogleIcon from 'react-native-vector-icons/FontAwesome';
 import EmailIcon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
+import { AuthContext } from './AuthContext';
 
 const AuthScreen = ({ navigation }) => {
   const passRef = useRef(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const { authenticateUser } = useContext(AuthContext);
 
   const SlideInMenu = () => (
     <View style={styles.slideInMenu}>
@@ -43,27 +45,8 @@ const AuthScreen = ({ navigation }) => {
     </View>
   );    
 
-  const authenticateUser = async () => {
-    try {
-      const response = await fetch(`https://datenbazar-app.vercel.app/api/check-credentials`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username: username, password: password }) // send username and password to the server
-      });
-  
-      const data = await response.json();
-      
-      if (data.valid) {
-        console.log('User credentials are valid! User is logged in!');
-        navigation.navigate("MyAccount", { username: username })
-      } else {
-        Alert.alert('Invalid credentials', 'Username or password is incorrect.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const handleLogin = () => {
+    authenticateUser(username, password, navigation);
   };
   
 
@@ -116,7 +99,7 @@ const AuthScreen = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={authenticateUser}
+        onPress={handleLogin}
       >
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>

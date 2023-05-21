@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import CloseIcon from 'react-native-vector-icons/AntDesign';
 import Modal from 'react-native-modal';
+import { AuthContext } from '../Vladimir/AuthContext';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const Contact = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const { isLoggedIn } = useContext(AuthContext); // get isLoggedIn from context
 
     const SlideInMenu = () => (
         <View style={styles.slideInMenu}>
@@ -40,25 +42,27 @@ const Contact = ({ navigation }) => {
 
         <View style={styles.container}>
             <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-                <TouchableOpacity onPress={() => navigation.navigate("AuthScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate(isLoggedIn ? "MyAccount" : "AuthScreen")}>
                     <Icon2 name="angle-left" size={40} color="black" />
                 </TouchableOpacity>
                 <Text style={styles.title}>Contact us</Text>
-                <TouchableOpacity style={styles.menuIcon} onPress={() => setModalVisible(true)}>
-                    <Icon name="ellipsis-vertical" size={30} color="black" />
-                     <Modal
-                        isVisible={modalVisible}
-                        onBackdropPress={() => setModalVisible(false)}
-                        onBackButtonPress={() => setModalVisible(false)}
-                        style={styles.modal}
-                        swipeDirection="right"
-                        onSwipeComplete={() => setModalVisible(false)}
-                        animationIn="slideInRight"
-                        animationOut="slideOutRight"
-                    >
-                        <SlideInMenu />
-                    </Modal>
-                </TouchableOpacity>
+                { !isLoggedIn && ( // Renders only if isLoggedIn is false
+                    <TouchableOpacity style={styles.menuIcon} onPress={() => setModalVisible(true)}>
+                        <Icon name="ellipsis-vertical" size={30} color="black" />
+                        <Modal
+                            isVisible={modalVisible}
+                            onBackdropPress={() => setModalVisible(false)}
+                            onBackButtonPress={() => setModalVisible(false)}
+                            style={styles.modal}
+                            swipeDirection="right"
+                            onSwipeComplete={() => setModalVisible(false)}
+                            animationIn="slideInRight"
+                            animationOut="slideOutRight"
+                        >
+                            <SlideInMenu />
+                        </Modal>
+                    </TouchableOpacity>
+                )}
             </View>
             <Text style={styles.text}>
                 <Text style={styles.bold}>Email:</Text> contact@DataBazar.com{"\n\n"}
