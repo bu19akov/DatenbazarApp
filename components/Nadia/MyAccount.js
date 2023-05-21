@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AuthContext } from '../Vladimir/AuthContext';
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export default function MyAccount() {
   const { logoutUser } = useContext(AuthContext);
@@ -11,6 +12,14 @@ export default function MyAccount() {
   const route = useRoute();
 
   const username = route.params ? route.params.username : 'Unknown User';
+
+  const handleUnimplementedFeature = () => {
+    Alert.alert(
+      "Under Development",
+      "This feature is currently under development. Please check back later.",
+      [{ text: "OK" }]
+    );
+  };
 
   const handleLogout = () => {
     Alert.alert(
@@ -34,36 +43,37 @@ export default function MyAccount() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleContainer}>
-          <Text style={styles.title}>My Account</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('AccountSettings')}>
-              <Ionicons name="settings" size={24} color="black" />
-          </TouchableOpacity>
+
+      <View style={[styles.header, { width: SCREEN_WIDTH }]}>
+        <TouchableOpacity onPress={handleLogout}>
+          <MaterialIcons name="logout" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.title}>My Account</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("AccountSettings")}>
+          <Ionicons name="settings" size={24} color="black" />
+        </TouchableOpacity>
+        <View />
       </View>
+
+      <View style={styles.screen}>
 
       <View style={styles.inputContainer}>
         <MaterialIcons name="account-circle" size={24} color="black" />
         <Text style={styles.input}>{username}</Text>
       </View>
-
-      {/* <TouchableOpacity style={styles.option}>
-        <MaterialIcons name="verified-user" size={24} color="black" />
-        <Text>Verified Profile</Text>
-        <Ionicons name="chevron-forward" size={24} color="black" />
-      </TouchableOpacity> */}
     
       <Text style={styles.subtitle}>Transaction list</Text>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={handleUnimplementedFeature}>
           <MaterialIcons name="pending-actions" size={20} color="black" style={styles.buttonIcon} />
           <Text style={styles.buttonText}>Awaiting Payments</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={handleUnimplementedFeature}>
           <MaterialIcons name="autorenew" size={20} color="black" style={styles.buttonIcon} />
           <Text style={styles.buttonText}>Transaction in Progress</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={handleUnimplementedFeature}>
           <MaterialIcons name="list" size={20} color="black" style={styles.buttonIcon} />
           <Text style={styles.buttonText}>All transactions</Text>
         </TouchableOpacity>
@@ -73,7 +83,7 @@ export default function MyAccount() {
         <Text>My Data for Sale</Text>
         <Ionicons name="chevron-forward" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('DataSellTransactions')}>
+      <TouchableOpacity style={styles.option} onPress={handleUnimplementedFeature}>
         <Text>Data Sell Transactions</Text>
         <Ionicons name="chevron-forward" size={24} color="black" />
       </TouchableOpacity>
@@ -81,21 +91,17 @@ export default function MyAccount() {
         <Text>Contact Support</Text>
         <Ionicons name="chevron-forward" size={24} color="black" />
       </TouchableOpacity>
-
-      <View style={styles.logoutContainer}>
-          <TouchableOpacity onPress={handleLogout}>
-              <MaterialIcons name="logout" size={24} color="black" />
-          </TouchableOpacity>
       </View>
   </View>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    paddingLeft: 15,
+  },
   container: {
     flex: 1,
-    paddingTop: 45,
-    paddingLeft: 15,
     backgroundColor: '#E0E0E0',
   },
   titleContainer: {
@@ -105,9 +111,21 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingRight: 10,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'gray',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    marginTop: 30,
+    marginBottom: 30,
+  },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 25,
+    color: 'black',
+    textAlign: 'center',
+    flex: 1, 
   },
   inputContainer: {
     flexDirection: 'row',
@@ -141,7 +159,6 @@ const styles = StyleSheet.create({
   buttonIcon: {
     alignSelf: 'center',
   },
-  
   option: {
     flexDirection: 'row',
     alignItems: 'center',
