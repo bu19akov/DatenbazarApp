@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Alert, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Alert, Dimensions, StatusBar } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AuthContext } from '../Vladimir/AuthContext';
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   container: {
+    paddingTop: StatusBar.currentHeight,
     flex: 1,
     backgroundColor: '#E0E0E0',
   },
@@ -118,7 +119,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     paddingVertical: 5,
     paddingHorizontal: 15,
-    marginTop: 30,
     marginBottom: 30,
   },
   title: {

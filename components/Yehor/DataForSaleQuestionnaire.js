@@ -7,10 +7,14 @@ import {
   StyleSheet,
   StatusBar,
   Modal,
+  Dimensions,
 } from "react-native";
 import SuccessfulMessage from "../Nadia/SuccessfullMessage";
+import Icon2 from 'react-native-vector-icons/FontAwesome';
 
 const DataForSaleQuestionnaire = ({ route, navigation }) => {
+  const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
   const { questions } = route.params;
 
   const [answers, setAnswers] = useState({});
@@ -102,6 +106,12 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
           <SuccessfulMessage navigation={navigation} />
         </View>
       </Modal>
+      <View style={[styles.header, { width: SCREEN_WIDTH }]}>
+                <TouchableOpacity onPress={() => navigation.navigate("DataForSaleOverview")}>
+                    <Icon2 name="angle-left" size={40} color="black" />
+                </TouchableOpacity>
+                <Text style={styles.headerTitle}>Upload your data</Text>
+              </View>
       <View style={styles.questionnaireContainer}>
         {questions.map((question, index) =>
           renderQuestion(question, index)
@@ -131,6 +141,8 @@ const styles = StyleSheet.create({
   },
   questionnaireContainer: {
     flex: 1,
+    paddingHorizontal: 15,
+    alignItems: "center",
   },
   container: {
     width: "95%",
@@ -178,6 +190,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
+  }
+  ,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'gray',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    marginBottom: 30,
+  },
+  headerTitle: {
+    fontSize: 25,
+    color: 'black',
+    textAlign: 'center',
+    flex: 1, 
   },
 });
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, Alert, ScrollView, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -441,6 +441,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#E0E0E0',
+    paddingTop: StatusBar.currentHeight,
   },
   formContainer: {
     flex: 1,
@@ -461,7 +462,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     paddingVertical: 5,
     paddingHorizontal: 15,
-    marginTop: 30,
     marginBottom: 30,
   },
   title: {

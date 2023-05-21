@@ -1,12 +1,21 @@
 import React from 'react';
-import { View, StyleSheet, Text, StatusBar, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, StatusBar, SafeAreaView, Dimensions, TouchableOpacity } from 'react-native';
 import DataForSaleCard from './DataForSaleCard';
 import { DataForSaleJSON } from '../../assets/DataForSaleJSON';
+import Icon2 from 'react-native-vector-icons/FontAwesome';
 
-export default function DataForSaleOverview() {
+
+export default function DataForSaleOverview({ navigation }) {
+  const { width: SCREEN_WIDTH } = Dimensions.get('window');
   return (
     <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Data Bazar</Text>
+     <View style={[styles.header, { width: SCREEN_WIDTH }]}>
+      <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
+          <Icon2 name="angle-left" size={40} color="black" />
+      </TouchableOpacity>
+      <Text style={styles.title}>Data Bazar</Text>
+    </View>
+       
         <Text style={styles.subtitle}>Data for sale</Text>
         <Text style={styles.text}>Here you can find data for sale</Text>
 		<View style={styles.dataContainer}>
@@ -29,11 +38,6 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     backgroundColor: '#E0E0E0',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
   subtitle: {
     fontSize: 18,
     marginBottom: 5,
@@ -48,5 +52,21 @@ const styles = StyleSheet.create({
 	width: '100%',
 	flexWrap: 'wrap',
 	width: '90%',
-  }
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'gray',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    marginBottom: 30,
+  },
+  title: {
+    fontSize: 25,
+    color: 'black',
+    textAlign: 'center',
+    flex: 1, 
+  },
+  
 });

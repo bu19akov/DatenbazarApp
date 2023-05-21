@@ -5,9 +5,14 @@ import {
   Text,
   StatusBar,
   SafeAreaView,
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import SettingsItem from "./SettingsItem";
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export default function AccountSettings() {
   const navigation = useNavigation();
@@ -15,9 +20,13 @@ export default function AccountSettings() {
   return (
     <SafeAreaView style={styles.container}>
 
-	<View style={styles.textContainer}>
-        <Text style={styles.title}>Account Settings</Text>
-      </View>
+        <View style={[styles.header, { width: SCREEN_WIDTH }]}>
+          <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
+            <Icon name="angle-left" size={40} color="black" />
+          </TouchableOpacity>
+          <Text style={styles.title}>Sign up</Text>
+          <View />
+        </View>
 
       <SettingsItem navigation={navigation} target="Personal Information" />
 
@@ -116,5 +125,20 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "left",
 	marginTop: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'gray',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    marginBottom: 30,
+  },
+  title: {
+    fontSize: 25,
+    color: 'black',
+    textAlign: 'center',
+    flex: 1, 
   },
 });
