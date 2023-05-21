@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Modal,
 } from "react-native";
-import SuccessfullMessage from "../Nadia/SuccessfullMessage";
+import SuccessfulMessage from "../Nadia/SuccessfullMessage";
 
 const DataForSaleQuestionnaire = ({ route, navigation }) => {
   const { questions } = route.params;
@@ -96,19 +97,22 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
 
   return (
     <View style={styles.safeArea}>
-      {isSubmitted ? (
-        <SuccessfullMessage navigation={navigation} />
-      ) : (
-        <>
-          {questions.map((question, index) => renderQuestion(question, index))}
-          <TouchableOpacity
-            onPress={handleSubmit}
-            style={[styles.container, styles.submitButton]}
-          >
-            <Text style={styles.title}>Submit</Text>
-          </TouchableOpacity>
-        </>
-      )}
+      <Modal animationType="fade" transparent visible={isSubmitted}>
+        <View style={styles.modalBackground}>
+          <SuccessfulMessage navigation={navigation} />
+        </View>
+      </Modal>
+      <View style={styles.questionnaireContainer}>
+        {questions.map((question, index) =>
+          renderQuestion(question, index)
+        )}
+        <TouchableOpacity
+          onPress={handleSubmit}
+          style={[styles.container, styles.submitButton]}
+        >
+          <Text style={styles.title}>Submit</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -118,6 +122,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#E0E0E0",
     paddingTop: StatusBar.currentHeight,
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  questionnaireContainer: {
+    flex: 1,
   },
   container: {
     width: "95%",
