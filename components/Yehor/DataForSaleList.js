@@ -36,6 +36,7 @@ const DataForSaleList = ({ route , navigation}) => {
               return (
                 <DataForSale
                   key={index}
+                  image={data.image}
                   dataName={data.dataName}
                   price={data.price}
                   questions={data.questions}

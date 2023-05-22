@@ -36,7 +36,7 @@ export default function AccountSettings() {
 
       <Divider />
 
-      <SettingsItem navigation={navigation} target="Data For Sale Overview" name="Data For Sale" />
+      <SettingsItem navigation={navigation} target="Data For Sale Overview" name="Data For Sale" isImplemented={true} />
 
       <Divider />
 

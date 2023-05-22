@@ -1,11 +1,20 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableNativeFeedback } from 'react-native';
+import { View, StyleSheet, Text, TouchableNativeFeedback, Alert } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const SettingsItem = ({navigation, target, name}) => {
+const SettingsItem = ({navigation, target, name, isImplemented}) => {
+	
+const handleUnimplementedFeature = () => {
+	Alert.alert(
+		"Under Development",
+		"This feature is currently under development. Please check back later.",
+		[{ text: "OK" }]
+	);
+	};
+
   return (
     <TouchableNativeFeedback
-      onPress={() => navigation.navigate(target.replace(/\s/g, ''))}
+      onPress={isImplemented ? () => navigation.navigate(target.replace(/\s/g, '')): () => handleUnimplementedFeature()}
     >
       <View style={styles.settingsItem}>
         <Text style={styles.subtitle}>{name ? name : target}</Text>

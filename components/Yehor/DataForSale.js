@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-const DataForSale = ({ dataName, price, questions}) => {
+const DataForSale = ({ image, dataName, price, questions}) => {
   const navigation = useNavigation();
 
   const handleOnPress = () => {
@@ -11,7 +11,7 @@ const DataForSale = ({ dataName, price, questions}) => {
 
   return (
       <TouchableOpacity style={styles.container} onPress={handleOnPress}>
-          <Image source={require('../../assets/icon.png')} style={styles.image} />
+          <Image source={image} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.title}>{dataName}</Text>
             <Text style={styles.text}>{price}$ per month</Text>

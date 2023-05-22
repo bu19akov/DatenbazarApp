@@ -1,10 +1,10 @@
 export const DataForSaleJSON = [
   {
-    image: require("../assets/icon.png"),
+    image: require("../assets/healthIcons/health.png"),
     dataCategory: "Health Data",
     data: [
       {
-        image: require("../assets/icon.png"),
+        image: require("../assets/healthIcons/health_data.png"),
         dataName: "General health status",
         price: 1,
         questions: [
@@ -48,6 +48,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Medical history",
+        image: require("../assets/healthIcons/book.png"),
         price: 3,
         questions: [
           {
@@ -61,6 +62,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Genetic test results",
+        image: require("../assets/healthIcons/test.png"),
         price: 8,
         questions: [
           {
@@ -74,6 +76,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Prescription records",
+        image: require("../assets/healthIcons/medicines.png"),
         price: 4,
         questions: [
           {
@@ -88,6 +91,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Fitness tracker data",
+        image: require("../assets/healthIcons/fitness.png"),
         price: 2,
         questions: [
           {
@@ -101,6 +105,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Blood pressure readings",
+        image: require("../assets/healthIcons/blood_pressure.png"),
         price: 1,
         questions: [
           {
@@ -113,6 +118,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Dietary habits",
+        image: require("../assets/healthIcons/nutrition.png"),
         price: 2,
         questions: [
           {
@@ -125,6 +131,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Sleep patterns",
+        image: require("../assets/healthIcons/sleep.png"),
         price: 3,
         questions: [
           {
@@ -137,6 +144,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Allergy information",
+        image: require("../assets/healthIcons/allergies.png"),
         price: 2,
         questions: [
           {
@@ -150,6 +158,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Immunization records",
+        image: require("../assets/healthIcons/virus.png"),
         price: 4,
         questions: [
           {
@@ -163,6 +172,7 @@ export const DataForSaleJSON = [
       },
       {
         dataName: "Lab test results",
+        image: require("../assets/healthIcons/microscope.png"),
         price: 6,
         questions: [
           {
@@ -177,12 +187,12 @@ export const DataForSaleJSON = [
     ],
   },
   {
-    image: require('../assets/icon.png'),
+    image: require('../assets/entIcons/happy.png'),
     dataCategory: "Entertainment data",
     data: [
       {
-        image: require('../assets/icon.png'),
         dataName: "Music preferences",
+        image: require('../assets/entIcons/ear.png'),
         price: 2,
         questions: [
           {
@@ -227,8 +237,8 @@ export const DataForSaleJSON = [
         ]
       },
       {
-        image: require('../assets/icon.png'),
         dataName: "Movie preferences",
+        image: require('../assets/entIcons/movies.png'),
         price: 3,
         questions: [
           {
@@ -257,8 +267,8 @@ export const DataForSaleJSON = [
         ]
       },
       {
-        image: require('../assets/icon.png'),
         dataName: "TV show preferences",
+        image: require('../assets/entIcons/desktop_app.png'),
         price: 2,
         questions: [
           {
