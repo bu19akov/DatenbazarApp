@@ -23,14 +23,14 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bu19akov.DatenbazarApp"
+      "package": "com.bu19akov.DatabazarApp"
     },
     "web": {
       "favicon": "./assets/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "6657ca0c-16c9-4b8a-9263-6642d89cb392"
+        "projectId": "4cf21c83-f162-4518-b80a-f5ae59fb6d65"
       }
     }
   }
