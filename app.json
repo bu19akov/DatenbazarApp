@@ -23,7 +23,10 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bu19akov.DatabazarApp"
+      "package": "com.bu19akov.DatabazarApp",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "web": {
       "favicon": "./assets/logo.png"
@@ -32,6 +35,9 @@
       "eas": {
         "projectId": "4cf21c83-f162-4518-b80a-f5ae59fb6d65"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4cf21c83-f162-4518-b80a-f5ae59fb6d65"
     }
   }
 }
