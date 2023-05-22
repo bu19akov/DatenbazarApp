@@ -20,7 +20,8 @@ Our objective is to create a platform where users can securely and consciously m
 
 ## Installation
 
-For installation instructions, please follow the guidelines provided in the 'Installation' section.
+Expo Link: https://expo.dev/@bu19akov/DatabazarApp?serviceType=classic&distribution=expo-go  
+.apk Link: https://drive.google.com/file/d/10FXgZJagdupAkTzegXic0bXW5tom2CE9/view?usp=sharing
 
 ## Contribution
 
