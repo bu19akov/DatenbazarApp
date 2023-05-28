@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,14 +11,32 @@ import {
 } from "react-native";
 import SuccessfulMessage from "../Nadia/SuccessfullMessage";
 import Icon2 from 'react-native-vector-icons/FontAwesome';
+import { ScrollView } from "react-native-gesture-handler";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DataForSaleQuestionnaire = ({ route, navigation }) => {
   const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
-  const { questions } = route.params;
+  const { questions, dataName, handleOnStoreChange } = route.params;
 
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Load saved answers from local storage
+    const loadSavedAnswers = async () => {
+      try {
+        const jsonAnswers = await AsyncStorage.getItem(dataName);
+        if (jsonAnswers !== null) {
+          const savedAnswers = JSON.parse(jsonAnswers);
+          setAnswers(savedAnswers);
+        }
+      } catch (error) {
+        console.log('Error loading saved answers:', error);
+      }
+    };
+
+    loadSavedAnswers();
+  }, []);
 
   const handleInputChange = (question, value) => {
     setAnswers((prevAnswers) => ({
@@ -31,13 +49,24 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
     const answersWithQuestions = {};
     questions.forEach((question, index) => {
       const questionText = question.questionText;
-      const answer = answers[index] || ""; // Default to empty string if answer is undefined
-
+      const answer = answers[questionText] || ""; // Default to empty string if answer is undefined
       answersWithQuestions[questionText] = answer;
     });
-    console.log(answersWithQuestions);
-    setAnswers({});
+
     setIsSubmitted(true);
+    handleOnStoreChange();
+
+    // Save answers to local storage
+    saveAnswers(answersWithQuestions);
+  };
+
+  const saveAnswers = async (answersToSave) => {
+    try {
+      const jsonAnswers = JSON.stringify(answersToSave);
+      await AsyncStorage.setItem(dataName, jsonAnswers);
+    } catch (error) {
+      console.log('Error saving answers:', error);
+    }
   };
 
   const renderQuestion = (question, index) => {
@@ -50,8 +79,8 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
               <TextInput
                 style={styles.text}
                 placeholder={question.placeholder}
-                onChangeText={(value) => handleInputChange(index, value)}
-                value={answers[index] || ""}
+                onChangeText={(value) => handleInputChange(question.questionText, value)}
+                value={answers[question.questionText] || ""}
               />
             </View>
           </View>
@@ -65,8 +94,8 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
 
               <RadioButtonsBlock
                 options={question.options}
-                selectedOption={answers[index] || ""}
-                onSelect={(value) => handleInputChange(index, value)}
+                selectedOption={answers[question.questionText] || ""}
+                onSelect={(value) => handleInputChange(question.questionText, value)}
               />
             </View>
           </View>
@@ -100,6 +129,7 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
   };
 
   return (
+    <ScrollView style={styles.scrollView}>
     <View style={styles.safeArea}>
       <Modal animationType="fade" transparent visible={isSubmitted}>
         <View style={styles.modalBackground}>
@@ -107,7 +137,7 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
         </View>
       </Modal>
       <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-                <TouchableOpacity onPress={() => navigation.navigate("DataForSaleOverview")}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Icon2 name="angle-left" size={40} color="black" />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Upload your data</Text>
@@ -124,10 +154,14 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
         </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: "#E0E0E0",
+  },
   safeArea: {
     flex: 1,
     backgroundColor: "#E0E0E0",

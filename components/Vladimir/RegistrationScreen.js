@@ -202,7 +202,7 @@ const RegistrationScreen = ({ navigation }) => {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
         <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-          <TouchableOpacity onPress={() => navigation.navigate("AuthScreen")}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="angle-left" size={40} color="black" />
           </TouchableOpacity>
           <Text style={styles.title}>Sign up</Text>
@@ -406,7 +406,7 @@ const RegistrationScreen = ({ navigation }) => {
 
         {step === 3 && (
           <>
-            <Icon name="check-circle" size={100} color="green" style={styles.icon}/>
+            <Icon name="check-circle" size={100} color="#33BB5D" style={styles.icon}/>
             <Text style={styles.completedReg}>Registration completed successfully!</Text>
           </>
         )}
@@ -540,7 +540,7 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   completedReg: {
-    fontSize: 30,
+    fontSize: 24,
     color: 'black',
     textAlign: 'center',
     marginTop: 20,

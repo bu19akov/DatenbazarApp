@@ -21,10 +21,10 @@ export default function AccountSettings() {
     <SafeAreaView style={styles.container}>
 
         <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-          <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="angle-left" size={40} color="black" />
           </TouchableOpacity>
-          <Text style={styles.title}>Sign up</Text>
+          <Text style={styles.title}>Account Settings</Text>
           <View />
         </View>
 
