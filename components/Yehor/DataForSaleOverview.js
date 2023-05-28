@@ -10,7 +10,7 @@ export default function DataForSaleOverview({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
      <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-      <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon2 name="angle-left" size={40} color="black" />
       </TouchableOpacity>
       <Text style={styles.title}>Data Bazar</Text>

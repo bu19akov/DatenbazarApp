@@ -42,7 +42,7 @@ const Contact = ({ navigation }) => {
 
         <View style={styles.container}>
             <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-                <TouchableOpacity onPress={() => navigation.navigate(isLoggedIn ? "MyAccount" : "AuthScreen")}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Icon2 name="angle-left" size={40} color="black" />
                 </TouchableOpacity>
                 <Text style={styles.title}>Contact us</Text>

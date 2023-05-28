@@ -39,7 +39,7 @@ const Privacy = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={[styles.header, { width: SCREEN_WIDTH }]}>
-                <TouchableOpacity onPress={() => navigation.navigate("AuthScreen")}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Icon2 name="angle-left" size={40} color="black" />
                 </TouchableOpacity>
                 <Text style={styles.title}>Privacy Policy</Text>
