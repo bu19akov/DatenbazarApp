@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "DatenbazarApp",
-    "slug": "DatenbazarApp",
+    "name": "Data Bazar",
+    "slug": "DatabazarApp",
     "description": "The Data Bazar App empowers users to sell or donate their \"personal data\", thereby expanding their data awareness. The app aims to educate users about the associated risks of data transactions.",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/logo.png",
@@ -20,18 +20,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bu19akov.DatenbazarApp"
+      "package": "com.bu19akov.DatabazarApp",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "web": {
       "favicon": "./assets/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "6657ca0c-16c9-4b8a-9263-6642d89cb392"
+        "projectId": "4cf21c83-f162-4518-b80a-f5ae59fb6d65"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4cf21c83-f162-4518-b80a-f5ae59fb6d65"
     }
   }
 }

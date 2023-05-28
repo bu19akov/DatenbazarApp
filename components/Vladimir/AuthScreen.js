@@ -38,10 +38,6 @@ const AuthScreen = ({ navigation }) => {
         onPress={() => [navigation.navigate('Contact'), setModalVisible(false)]}
         ><Text
          style={styles.menuButtonText}>Contact us </Text></TouchableOpacity>
-         <TouchableOpacity style={styles.menuButton}
-         onPress={()=> [navigation.navigate('HealthStat'), setModalVisible(false)]}>
-          <Text style={styles.menuButtonText}>HealthStat</Text>
-         </TouchableOpacity>
     </View>
   );    
 
@@ -110,7 +106,7 @@ const AuthScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Sign up with Email</Text>
         </View>
       </TouchableOpacity>
-    {/*
+    {/* Sign Up with Facebook / Google functionality
       <TouchableOpacity style={styles.button} onPress={() => {}}>
         <View style={styles.buttonContent}>
           <FacebookIcon name="facebook-square" size={20} color="black"/>
