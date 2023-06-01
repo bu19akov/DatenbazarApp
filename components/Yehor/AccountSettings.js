@@ -24,7 +24,7 @@ export default function AccountSettings() {
           <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
             <Icon name="angle-left" size={40} color="black" />
           </TouchableOpacity>
-          <Text style={styles.title}>Sign up</Text>
+          <Text style={styles.title}>Settings</Text>
           <View />
         </View>
 
