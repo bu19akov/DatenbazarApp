@@ -47,6 +47,10 @@ const DataForSaleQuestionnaire = ({ route, navigation }) => {
 
   const handleSubmit = () => {
     const answersWithQuestions = {};
+    if (Object.keys(answers).length !== questions.length) {
+      alert("Please answer all questions");
+      return;
+    }
     questions.forEach((question, index) => {
       const questionText = question.questionText;
       const answer = answers[questionText] || ""; // Default to empty string if answer is undefined

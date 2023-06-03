@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { LogBox } from 'react-native';
 
 const DataForSale = ({ image, dataName, price, questions}) => {
   const navigation = useNavigation();
@@ -32,6 +33,8 @@ const DataForSale = ({ image, dataName, price, questions}) => {
     }
     loadSavedAnswers();
   }, [storageChanged]);
+
+  LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
   return (
       <TouchableOpacity style={[styles.container, answers && styles.answered]} onPress={handleOnPress}>

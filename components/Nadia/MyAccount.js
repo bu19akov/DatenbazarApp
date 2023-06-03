@@ -61,30 +61,10 @@ export default function MyAccount() {
         <MaterialIcons name="account-circle" size={24} color="black" />
         <Text style={styles.input}>{username}</Text>
       </View>
-    
-      <Text style={styles.subtitle}>Transaction list</Text>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleUnimplementedFeature}>
-          <MaterialIcons name="pending-actions" size={20} color="black" style={styles.buttonIcon} />
-          <Text style={styles.buttonText}>Awaiting Payments</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleUnimplementedFeature}>
-          <MaterialIcons name="autorenew" size={20} color="black" style={styles.buttonIcon} />
-          <Text style={styles.buttonText}>Transaction in Progress</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleUnimplementedFeature}>
-          <MaterialIcons name="list" size={20} color="black" style={styles.buttonIcon} />
-          <Text style={styles.buttonText}>All transactions</Text>
-        </TouchableOpacity>
-      </View>
+  
 
       <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('DataForSaleOverview')}>
         <Text>My Data for Sale</Text>
-        <Ionicons name="chevron-forward" size={24} color="black" />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.option} onPress={handleUnimplementedFeature}>
-        <Text>Data Sell Transactions</Text>
         <Ionicons name="chevron-forward" size={24} color="black" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('Contact')}>

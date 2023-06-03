@@ -28,35 +28,9 @@ export default function AccountSettings() {
           <View />
         </View>
 
-      <SettingsItem navigation={navigation} target="Personal Information" />
-
-      <Divider />
-
-      <SettingsItem navigation={navigation} target="Payout Details" />
-
-      <Divider />
 
       <SettingsItem navigation={navigation} target="Data For Sale Overview" name="Data For Sale" isImplemented={true} />
 
-      <Divider />
-
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>Security</Text>
-      </View>
-
-	  <SettingsItem navigation={navigation} target="Change Password" />
-
-	  <Divider />
-
-	  <SettingsItem navigation={navigation} target="Face ID" />
-
-	  <Divider />
-
-	  <SettingsItem navigation={navigation} target="Change PIN" />
-
-	  <Divider />
-
-	  <SettingsItem navigation={navigation} target="Verification" />
 
 
 
